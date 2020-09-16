@@ -1,0 +1,27 @@
+version: '3.7'
+services: 
+    mysql-fullstack:
+        image: mysql:latest
+        restart: always
+        container_name: mysql-fullstack-server
+        ports: 
+            - 3333:3306 # Sets an open port on 3333. 
+        volumes: 
+            - mysql-fullstack:/var/lib/mysql
+            - ./db-init/:/docker-entrypoint-initdb.d # Creates an entrypoint script to execute sql script
+        environment: 
+            MYSQL_RANDOM_ROOT_PASSWORD: 'yes'
+            MYSQL_DATABASE: workorderproject
+            MYSQL_USER: user
+            MYSQL_PASSWORD: hunter2
+
+    redis:
+        hostname: redis
+        image: redis:latest
+        restart: always
+        ports:
+            - 6700:6379
+        
+volumes:
+    mysql-fullstack:
+        name: mysql-fullstack-data 

@@ -1,0 +1,8 @@
+# .dockerignore
+# This file ignores files you don't want
+# to be copied into your docker container.
+
+.git
+node_modules
+server/node_modules
+client/node_modules
